@@ -1,11 +1,9 @@
-import { Lab } from "./table/lab";
-import { Room } from "./table/room";
+import Space from "./table/space";
 import { Kysely, MysqlDialect } from "kysely";
 import { createPool } from "mysql2";
 
 export interface Database {
-  Lab: Lab,
-  Room: Room
+  Space: Space,
 }
 
 export class DB {

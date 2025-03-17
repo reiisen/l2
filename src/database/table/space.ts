@@ -1,6 +1,6 @@
 import { Generated, Insertable, Selectable, Updateable } from "kysely";
 
-export interface Room {
+interface Space {
 
   /* mysql: id | int | NO | PRI | NULL | auto_increment */
   id: Generated<number>
@@ -15,13 +15,15 @@ export interface Room {
   inactive: boolean;
 
   /* mysql: createdAt | datetime(3) | NO | - | CURRENT_TIMESTAMP(3) | DEFAULT_GENERATED */
-  createdAt: Date;
+  createdAt: Generated<Date>;
 
   /* mysql: updatedAt | datetime(3) | NO | - | CURRENT_TIMESTAMP(3) | DEFAULT_GENERATED */
-  updatedAt: Date;
+  updatedAt: Generated<Date>;
 }
 
 /* Extra types for queries */
-export type RoomS = Selectable<Room> // for select
-export type RoomI = Insertable<Room> // for insert
-export type RoomU = Updateable<Room> // for update
+export type SpaceS = Selectable<Space> // for select
+export type SpaceI = Insertable<Space> // for insert
+export type SpaceU = Updateable<Space> // for update
+
+export default Space;

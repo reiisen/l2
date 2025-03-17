@@ -6,6 +6,7 @@
     "dev": "npx esbuild ./src/index.ts --bundle --platform=node --outfile=./dist/index.js && node -r dotenv/config ./dist/index.js",
     "migrate-up": "npx ts-node -r dotenv/config ./src/database/test/up.ts",
     "migrate-down": "npx ts-node -r dotenv/config ./src/database/test/down.ts",
+    "reset":"npx ts-node -r dotenv/config ./src/database/test/down.ts && npx ts-node -r dotenv/config ./src/database/test/up.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

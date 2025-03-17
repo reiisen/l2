@@ -1,8 +1,9 @@
-import { db } from "../..";
+import { DB } from "../db";
 import { up } from "../migrate";
 import mysql from 'mysql2/promise'
 
 async function run() {
+  const db = new DB();
 
   const connection = await mysql.createConnection({
     host: process.env.HOST,
@@ -14,9 +15,14 @@ async function run() {
     },
   })
 
-  await connection.query('CREATE DATABASE IF NOT EXISTS l2')
-  await connection.end()
-  up(db.instance)
+  let target = process.env.DATABASE;
+  target ? target = target : target = 'l2';
+
+  await connection.query('CREATE DATABASE IF NOT EXISTS ' + target);
+  await connection.end();
+  console.log('Generating Tables...')
+  await up(db.instance);
+  process.exit(0);
 }
 
-run()
+run();
