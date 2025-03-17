@@ -24,7 +24,7 @@ async function run() {
       process.exit(0);
     }
   } catch (e) {
-
+    console.log(e);
   }
 
   try {
@@ -34,8 +34,8 @@ async function run() {
       await connection.end();
       process.exit(0);
     }
-  } catch {
-
+  } catch (e) {
+    console.log(e);
   }
 
   const db = new DB();
