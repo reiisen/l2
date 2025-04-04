@@ -1,9 +1,13 @@
 import Space from "./table/space";
 import { Kysely, MysqlDialect } from "kysely";
 import { createPool } from "mysql2";
+import Computer from "./table/computer";
+import Reservation from "./table/reserve";
 
 export interface Database {
   Space: Space,
+  Computer: Computer,
+  Reservation: Reservation,
 }
 
 export class DB {

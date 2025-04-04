@@ -3,24 +3,25 @@
   "version": "1.0.0",
   "main": "./dist/index.js",
   "scripts": {
-    "dev": "npx esbuild ./src/index.ts --bundle --platform=node --outfile=./dist/index.js && node -r dotenv/config ./dist/index.js",
+    "build": "npx esbuild ./src/index.ts --bundle --minify --target=esnext --tree-shaking=true --platform=node --outfile=./dist/index.js && node -r dotenv/config ./dist/index.js",
+    "build-dev": "npx esbuild ./src/index.ts --bundle --sourcemap --log-level=info --tree-shaking=true --platform=node --outfile=./dist/dev/index.js && node -r dotenv/config ./dist/dev/index.js",
     "migrate-up": "npx ts-node -r dotenv/config ./src/database/test/up.ts",
     "migrate-down": "npx ts-node -r dotenv/config ./src/database/test/down.ts",
-    "reset":"npx ts-node -r dotenv/config ./src/database/test/down.ts && npx ts-node -r dotenv/config ./src/database/test/up.ts",
+    "reset": "npx ts-node -r dotenv/config ./src/database/test/down.ts && npx ts-node -r dotenv/config ./src/database/test/up.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@types/express": "^5.0.0",
+    "@types/koa": "^2.15.0",
     "esbuild": "0.25.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
-    "express": "^4.21.2",
+    "koa": "^2.16.0",
     "kysely": "^0.27.5",
     "mysql2": "^3.12.0",
     "pino": "^9.6.0",

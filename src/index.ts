@@ -1,18 +1,13 @@
-import express from 'express'
-import initRouter from './route/router';
+import Koa from 'koa'
 import { DB } from './database/db';
-import pino from 'pino-http';
+import { router } from './route/router';
 
-export const app = express();
-
-app
-  .use(pino())
-  .use(express.json());
-
+export const app = new Koa();
 export const db = new DB();
 
-initRouter();
+const port = process.env.SERVER_PORT;
 
-app.listen('7272', () => {
-  console.log("Server running at port: " + process.env.SERVER_PORT);
-});
+app.use(router);
+app.listen(port);
+
+console.log("Server running at http://127.0.0.1:" + port);

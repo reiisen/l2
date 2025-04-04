@@ -1,8 +1,9 @@
-import { Response } from "express";
+import { Context } from "koa";
 
-export const resolveError = (res: Response, message: string, error?: unknown, statusCode = 400) => {
+export const error = (ctx: Context, message: string, error?: unknown, statusCode = 400) => {
   console.log(statusCode >= 500 ? "Server Error:" : "Client Error:");
   console.log(message);
   if (error) console.error(error);
-  res.status(statusCode).send(message);
+  ctx.response.status = statusCode;
+  ctx.response.body = message
 };
